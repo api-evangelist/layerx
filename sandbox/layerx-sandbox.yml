@@ -1,0 +1,37 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/news/20240918/ and https://bakuraku.jp/workflow/function/api/
+  (fetched 2026-08-23)
+api: Bakuraku API
+published: false
+gated: true
+console_or_playground: false
+note: >-
+  A test environment exists but is not a published one. Announcing the 請求書発行 API,
+  LayerX wrote "利用をご希望の際は、仕様書とお客様専用の検証環境をご提供いたします" — on
+  request, LayerX provides the specification document AND a customer-dedicated
+  verification environment. So each API customer gets a private sandbox provisioned for
+  them; there is no shared test tenant, no self-serve console, no interactive
+  try-it-out on a public reference page, and no published test credentials, fixtures or
+  magic values. Because nothing here is reachable without a sales conversation, no
+  Sandbox pointer is emitted — the artifact records that the capability exists and where
+  the wall is.
+environments:
+- name: customer-dedicated verification environment (お客様専用の検証環境)
+  provisioning: on request, as part of the API application
+  self_serve: false
+  public_url: null
+  base_url: unknown
+  credentials: issued per customer
+  source: https://bakuraku.jp/news/20240918/
+trial:
+  present: true
+  terms: >-
+    LayerX offers the 請求書発行 API integration feature free for one month before a
+    contract is required.
+  self_serve: false
+  source: https://bakuraku.jp/news/20240918/
+test_values:
+  published: false
+  note: No test cards, magic identifiers, sandbox key prefixes or fixture triggers are published.

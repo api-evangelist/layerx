@@ -1,0 +1,142 @@
+generated: '2026-08-23'
+method: probed
+source: >-
+  Direct anonymous GET of each /.well-known/ path on every LayerX-controlled host
+  (company site, product site, API host, identity host, status host, product domains),
+  2026-08-23.
+note: >-
+  No LayerX host serves any /.well-known/ document. Two of the hosts return HTTP 200 for
+  every /.well-known/* path with an SPA/HTML shell rather than a document — id.layerx.jp
+  (the LayerX ID sign-in single-page app) and, on api.bakuraku.layerx.jp, the ALB 404s
+  with an empty body. The 200s recorded below are explicitly marked shell:true and are
+  NOT documents; no WellKnown or SecurityTxt pointer is emitted for this provider.
+  LayerX does publish a vulnerability-report contact, but on an ordinary HTML page
+  (https://layerx.co.jp/security_policy/), not as an RFC 9116 security.txt.
+hosts:
+- host: layerx.co.jp
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: bakuraku.jp
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    note: 301 to trailing-slash form, which then 404s (WordPress catch-all).
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.bakuraku.layerx.jp
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: id.layerx.jp
+  shell: true
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    shell: true
+    note: >-
+      HTML SPA shell (4,398 bytes, text/html) returned identically for every
+      /.well-known/* path. Not a document — recorded as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    shell: true
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    shell: true
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    shell: true
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    shell: true
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    shell: true
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    shell: true
+- host: getaiworkforce.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: bakuraku-status.jp
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+    note: Site24x7 StatusIQ hosted status page.

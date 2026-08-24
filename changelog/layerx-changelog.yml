@@ -1,0 +1,113 @@
+generated: '2026-08-23'
+method: searched
+source: https://bakuraku.jp/news/ and https://bakuraku.jp/news-sitemap.xml (fetched 2026-08-23)
+scheme: dated-announcements
+current_version: null
+note: >-
+  LayerX has no API changelog and no developer release notes reachable without a login.
+  What is public is a dated corporate/product announcement stream at
+  https://bakuraku.jp/news/ — 395 dated entries in the news sitemap going back to 2023 —
+  which mixes product releases, customer case studies, market research and event notices
+  in one feed with no version numbers and no breaking-change marking. Product update
+  notes for signed-in customers live in the Zendesk support site
+  (https://bakuraku-login.layerx.jp/hc/ja), which answers an anonymous crawler with a
+  Cloudflare interstitial. The /news/updates/ and /news/release/ paths listed in the
+  sitemap both 404 as of 2026-08-23 — a stale sitemap, recorded because it is the kind of
+  dead link a reader would otherwise chase.
+feeds:
+- url: https://bakuraku.jp/feed/
+  type: RSS
+  status: 200
+  covers: knowledge/blog articles, not product releases
+- url: https://bakuraku.jp/news-sitemap.xml
+  type: sitemap
+  status: 200
+  entries: 395
+  covers: the dated announcement stream
+breaking_change_policy:
+  published: false
+  note: >-
+    Article 5.5 of the バクラクAPI利用規約 reserves LayerX's right to change the API
+    specification at any time without prior notice; Article 9 commits only to notifying
+    the contract holder's registered contact. So API breaking changes are communicated
+    privately by email, not on any public changelog.
+  source: https://bakuraku.jp/terms/api-terms/
+entries:
+- date: '2026-08-24'
+  title: >-
+    LayerX、AI時代の請求・入金消込・督促オペレーションを問い直す「請求＆債権管理 Day」を
+    9月10日に開催
+  type: event
+  breaking: false
+  url: https://bakuraku.jp/news/20260824/
+- date: '2026-08-20'
+  title: バクラク、導入時の初期設定を自動化するAIエージェント機能をリリース
+  type: release
+  breaking: false
+  highlights: AI agent that automates initial tenant setup for バクラク申請 and バクラク経費精算.
+  url: https://bakuraku.jp/news/20260820/
+- date: '2026-08-06'
+  title: >-
+    株式会社グッドパッチが「バクラク勤怠」を導入。締日の勤怠提出率が9割以上に、修正申請の
+    即日提出率は2.5倍に向上
+  type: case-study
+  breaking: false
+  url: https://bakuraku.jp/news/20260806/
+- date: '2026-08-03'
+  title: >-
+    LayerX、AI人事労務サービス「バクラク人事労務」先行トライアル開始。申請・承認・従業員
+    マスタへの反映をつなぎ、労務手続きを自動化
+  type: release
+  breaking: false
+  highlights: New product line (HR/labour) entering early trial.
+  url: https://bakuraku.jp/news/20260803/
+- date: '2026-08-03'
+  title: >-
+    ＜「給与計算の月次締め」に関する実態調査＞システム間の“データ断絶”により、86.6%の企業で
+    「Excel等での二重管理」が常態化している実態
+  type: research
+  breaking: false
+  url: https://bakuraku.jp/news/20260803-2/
+- date: '2026-07-30'
+  title: >-
+    ＜大企業におけるバックオフィスのAI投資に関する実態調査＞AI投資は「実装」フェーズへ。
+    約7割が投資対効果を実感。
+  type: research
+  breaking: false
+  url: https://bakuraku.jp/news/20260730/
+- date: '2026-07-08'
+  title: >-
+    ジェイアール東海コンサルタンツ株式会社が「バクラク」を導入。ペーパーレス運用とAI機能に
+    より請求書処理・支払申請業務の自動化を推進
+  type: case-study
+  breaking: false
+  url: https://bakuraku.jp/news/20260708/
+- date: '2026-07-01'
+  title: >-
+    LayerX、AIエージェント時代のバックオフィス変革を先進企業と議論した「バックオフィスAI
+    サミット」の無料オンライン配信決定
+  type: event
+  breaking: false
+  url: https://bakuraku.jp/news/20260701/
+api_relevant_history:
+- date: '2024-09-18'
+  title: >-
+    バクラク請求書発行、API連携機能をリリース。基幹システムとの連携をスムーズにし、さらなる
+    業務効率化を実現
+  type: release
+  breaking: false
+  highlights: >-
+    Added API integration to バクラク請求書発行 — automated document creation/upload in
+    CSV or PDF and create/update of the recipient master (送付先マスタ). LayerX offers a
+    one-month no-charge trial and states it supplies a specification document and a
+    customer-dedicated verification environment on request.
+  url: https://bakuraku.jp/news/20240918/
+- date: '2023-07-25'
+  title: 「バクラクAPI」利用規約 制定・施行
+  type: policy
+  breaking: false
+  highlights: >-
+    The API terms were enacted 2023-07-25 and revised 2024-09-01 and 2025-11-01, per the
+    revision history printed at the foot of the terms page. That triple of dates is the
+    closest thing LayerX publishes to a dated API history.
+  url: https://bakuraku.jp/terms/api-terms/

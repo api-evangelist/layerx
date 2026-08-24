@@ -64,5 +64,20 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-LayerX is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+LayerX Inc. (株式会社LayerX) is a Tokyo-based enterprise software company founded 1 August 2018,
+operating as a compound startup across four business lines: **Bakuraku** (バクラク), an AI back-office
+suite covering expense reimbursement, invoice receipt and issuance, workflow and approvals, electronic
+bookkeeping, attendance, payroll and a corporate card; **Ai Workforce**, an enterprise LLM
+document-processing platform; a **Fintech** business run through the Mitsui-X / Mitsui & Co. Digital Asset
+Management joint venture; and a **Security** business added through the April 2026 acquisition of
+AgenticSec Inc.
+
+Its developer surface is the **Bakuraku API**, a REST API at `api.bakuraku.layerx.jp` built on an internal
+unified GraphQL gateway and tsoa. The API is live and answers anonymous calls with its own JSON error
+envelope, but its reference is HTTP Basic protected and issued only to approved API customers, and no
+OpenAPI definition is published at any public URL. See `x-coverage` in `apis.yml`.
+
+- https://layerx.co.jp/ — company
+- https://bakuraku.jp/ — Bakuraku product site
+- https://bakuraku.jp/workflow/function/api/ — API overview
+- https://bakuraku-status.jp/ — status page

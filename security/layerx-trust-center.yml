@@ -1,0 +1,66 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/security/ and https://layerx.co.jp/security_policy/ (both fetched
+  2026-08-23)
+trust_center:
+  present: true
+  type: product-security-page
+  url: https://bakuraku.jp/security/
+  http_status: 200
+  portal: false
+  note: >-
+    A published product security page rather than a gated trust portal — no NDA, no
+    request form, no document vault. Certifications, encryption posture, access controls
+    and organisational measures are stated on the page itself. The corporate information
+    security policy is separately published at https://layerx.co.jp/security_policy/.
+certifications:
+- name: ISO/IEC 27001 (ISMS)
+  registration_number: IS 747702
+  status: certified
+  scope_note: >-
+    Stated by LayerX as covering the organisation EXCEPT the Mitsui & Co. Digital Asset
+    Management business unit. Recorded verbatim because the carve-out is material: the
+    Fintech line is outside the certified scope.
+  source: https://layerx.co.jp/security_policy/
+- name: SOC 1 Type 2
+  status: certified
+  scope_note: >-
+    Service organisation controls report covering the effectiveness of internal control
+    over financial reporting.
+  source: https://bakuraku.jp/security/
+- name: JIIMA 電帳法スキャナ保存ソフト法的要件認証
+  status: certified
+  applies_to: バクラク電子帳簿保存
+  scope_note: >-
+    Japanese Image and Information Management Association certification that the software
+    meets the legal requirements of the Electronic Books Preservation Act (電子帳簿保存法)
+    for scanner-stored records. LayerX notes certification status differs by product.
+  source: https://bakuraku.jp/denshichobo/
+- name: JIIMA 電帳法電子取引ソフト法的要件認証
+  status: certified
+  applies_to: バクラク電子帳簿保存
+  scope_note: >-
+    JIIMA certification for the electronic-transaction record requirements of the same
+    act.
+  source: https://bakuraku.jp/denshichobo/
+not_claimed:
+- SOC 2
+- ISMAP
+- PCI DSS
+- プライバシーマーク (PrivacyMark)
+- HIPAA
+- FedRAMP
+controls_published:
+  encryption_in_transit: TLS 1.3 (claimed on the security page; the API host negotiated TLS 1.2 when probed 2026-08-23)
+  encryption_at_rest: true
+  mfa: true
+  sso: true
+  ip_restriction: true
+  edr: true
+  device_management: true
+  external_media_restriction: true
+  penetration_testing: regular third-party
+  intrusion_detection: true
+  ciso: true
+  security_training: onboarding plus recurring

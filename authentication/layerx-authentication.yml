@@ -1,0 +1,82 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/terms/api-terms/ (LayerX's own "バクラクAPI"利用規約, Articles 4-6),
+  https://bakuraku.jp/workflow/function/api/, https://bakuraku.jp/news/20240918/, and the
+  integrator-published setup reference https://documents.trocco.io/docs/connection-configuration-bakuraku
+note: >-
+  Derived from provider terms plus published integrator setup docs. LayerX publishes no
+  OpenAPI, so there is no securitySchemes block to derive from; the API reference at
+  https://api.bakuraku.layerx.jp/rest/docs/ answers 401 WWW-Authenticate: Basic to
+  anonymous callers, so the header name and exact key format could not be verified and
+  are recorded as unknown rather than guessed.
+api: Bakuraku API
+base_url: https://api.bakuraku.layerx.jp/rest
+schemes:
+- id: bakuraku-api-key
+  type: apiKey
+  name: unknown
+  in: unknown
+  label: Bakuraku API key
+  description: >-
+    A tenant-scoped API key issued from the Bakuraku admin console. Per the integrator
+    setup reference the flow is: Bakuraku 管理画面 → API管理 → 新規作成 → select the
+    permissions the key should carry → issue the key. Article 4 of the API terms states
+    LayerX issues "API認証情報" to an approved "API契約者" and that the contract holder
+    bears full responsibility for its safekeeping; the credential may be shared with the
+    contract holder's own end users but never transferred, lent or sold to third parties.
+  issued_to: >-
+    An "API契約者" — a legal entity LayerX has approved for API use by its prescribed
+    application process. An existing Bakuraku subscription is a precondition (API terms,
+    Article 3).
+  header: unknown
+  rotation: >-
+    LayerX may suspend or re-issue API credentials without the contract holder's consent
+    while an incident is being contained (API terms, Article 6.5).
+permissions:
+  model: >-
+    Permission-scoped API keys. The permissions a key carries are selected at issuance in
+    the admin console, so a key is least-privilege by construction rather than by an OAuth
+    scope string. This is not an OAuth 2.0 surface, so no scopes/ artifact is emitted.
+  observed:
+  - id: application-read
+    label: 申請の読み取り権限
+    english: Read applications / requests
+    source: https://documents.trocco.io/docs/connection-configuration-bakuraku
+  - id: org-chart-read
+    label: 組織図の読み取り権限
+    english: Read organization chart (groups and positions)
+    source: https://documents.trocco.io/docs/connection-configuration-bakuraku
+  - id: user-read
+    label: ユーザーの読み取り権限
+    english: Read users
+    source: https://documents.trocco.io/docs/connection-configuration-bakuraku
+  completeness: >-
+    Partial. These three are the permissions one named integrator documents needing for a
+    read-only sync. The full permission catalogue is inside the gated reference and has
+    not been observed.
+oauth2:
+  present_on_api: false
+  note: >-
+    LayerX does operate an OAuth 2.0 / OIDC authorization server for LayerX ID
+    (id.layerx.jp), built on Authlete and announced 2023-02-15. That server backs product
+    sign-in and SSO, not the Bakuraku REST API, and it publishes no anonymous
+    /.well-known/openid-configuration — every /.well-known/* path on id.layerx.jp returns
+    the sign-in SPA shell. Recorded here so a later round does not re-derive it as an
+    API auth flow.
+  source: https://www.authlete.com/ja/news-jp/20230215-layerx
+tenant_sso:
+  saml: true
+  note: >-
+    Bakuraku supports SAML single sign-on and IP address restrictions for tenant login
+    (customer-facing, not an API auth mode).
+  source: https://bakuraku.jp/security/
+transport:
+  tls: true
+  observed_hsts: 'strict-transport-security: max-age=15552000; includeSubDomains'
+  observed_on: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+  probed: '2026-08-23'
+gaps:
+- No public OpenAPI or securitySchemes declaration.
+- Credential header name and key format not published anonymously.
+- No published permission/scope reference page.

@@ -1,0 +1,38 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/terms/api-terms/ (Articles 5.6 and 7.1.2) and the integrator setup
+  reference https://documents.trocco.io/docs/connection-configuration-bakuraku
+api: Bakuraku API
+limit_count: 0
+note: >-
+  LayerX states plainly that rate limiting exists and that it may be applied without prior
+  notice, but publishes no number, no window, and no response-header contract. Article 5.6
+  of the バクラクAPI利用規約: "当社は、API契約者に対して事前に通知することなく、本APIの
+  負荷状況に応じて本APIの利用の制限をかけることができるものとします" — LayerX may throttle
+  API use according to load, without prior notice. Article 7.1.2 additionally prohibits
+  "短時間における大量のアクセス" (high-volume access in a short period) as a contract
+  violation. An integrator's own setup page repeats the warning that sending many requests
+  in a short time can temporarily disable API access. Because no figure is published, this
+  records limit_count: 0 rather than inventing one.
+limits: []
+headers:
+  documented: []
+  observed: []
+  probed: '2026-08-23'
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was present on the anonymous
+    responses observed from https://api.bakuraku.layerx.jp/rest/v1/tenant/users. Those
+    responses never reached an authenticated, rate-accounted code path, so this is
+    evidence of absence on the error path only, not of absence on the success path.
+exhaustion_status: unknown
+enforcement:
+  discretionary: true
+  prior_notice: false
+  contractual_prohibition: >-
+    High-volume short-interval access is listed as a prohibited act, so exceeding the
+    unpublished limit is framed as a terms breach and not only as a 429.
+gaps:
+- No published request-per-window figure for any scope.
+- No documented response headers, so an agent cannot back off on signal — only on failure.
+- No documented status code on exhaustion.

@@ -1,0 +1,61 @@
+generated: '2026-08-23'
+method: probed
+source: >-
+  Anonymous GET https://api.bakuraku.layerx.jp/rest/v1/tenant/users and
+  https://api.bakuraku.layerx.jp/rest/openapi.json on 2026-08-23.
+api: Bakuraku API
+format: custom
+rfc9457: false
+note: >-
+  LayerX publishes no error reference anonymously — the API reference at
+  https://api.bakuraku.layerx.jp/rest/docs/ is HTTP Basic protected. This catalogue is
+  therefore what the live API actually returned to an unauthenticated caller, and nothing
+  more. It is deliberately short: one observed code is one observed code. Do not read the
+  absence of other codes as evidence they do not exist.
+envelope:
+  content_type: application/json; charset=utf-8
+  fields:
+  - name: code
+    type: integer
+    description: >-
+      Integer status in the Connect/gRPC canonical code space, consistent with the
+      Connect-based service mesh LayerX describes behind its REST layer. It is NOT the
+      HTTP status — the HTTP status was 400 while the body carried 3.
+  - name: message
+    type: string
+    description: Human-readable message, localized to Japanese.
+  example: '{"code":3,"message":"不正な値です"}'
+problem_types:
+- code: 3
+  http_status: 400
+  canonical_name: INVALID_ARGUMENT
+  message_ja: 不正な値です
+  message_en: Invalid value
+  observed: true
+  observed_on:
+  - url: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+    method: GET
+    status: 400
+  - url: https://api.bakuraku.layerx.jp/rest/openapi.json
+    method: GET
+    status: 400
+  - url: https://api.bakuraku.layerx.jp/rest/
+    method: GET
+    status: 400
+  remediation: >-
+    Returned for a malformed or unrecognized request against the /rest surface. Observed
+    without any credential, so it fires ahead of authentication rather than after it.
+transport_statuses:
+- status: 401
+  where: /rest/docs/ and everything beneath it
+  www_authenticate: Basic
+  meaning: >-
+    The API reference itself is gated at the load balancer (server: awselb/2.0). This is a
+    documentation gate, not an API error.
+- status: 404
+  where: host root and any path outside /rest
+  body: empty
+coverage:
+  codes_documented_by_provider: 0
+  codes_observed: 1
+  publicly_readable_error_reference: false

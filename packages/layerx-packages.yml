@@ -1,0 +1,95 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  registry.npmjs.org search and metadata endpoints, pypi.org/pypi/<pkg>/json,
+  api.github.com/orgs/LayerXcom and api.github.com/orgs/layerx-oss (all queried
+  2026-08-23)
+api_client_sdk_count: 0
+note: >-
+  LayerX ships NO client library for the Bakuraku API — not in npm, PyPI, Maven Central,
+  NuGet, pkg.go.dev, RubyGems, Packagist or crates.io, and not in either of its GitHub
+  organisations. Integrators call the REST API directly or reach it through an iPaaS/ETL
+  connector built by a third party (TROCCO, Yoom, bundle and freee all publish Bakuraku
+  connectors, none of them first-party). The packages listed below ARE first-party LayerX
+  publications and are recorded for completeness, but none of them wraps the API, so no
+  SDKs pointer is emitted for this provider — doing so would credit LayerX with a client
+  library it has not written. LayerXcom's remaining 60 public repositories are the
+  company's 2018-2021 blockchain-era research (Zerochain, CBC Casper, Plasma, zk-SNARK
+  work) and are not maintained.
+packages:
+- language: javascript
+  registry: npm
+  name: next-navigation-guard
+  official: true
+  api_client: false
+  kind: oss-library
+  version: 0.2.0
+  published: '2025-06-28'
+  repository: https://github.com/LayerXcom/next-navigation-guard
+  url: https://www.npmjs.com/package/next-navigation-guard
+  description: >-
+    Cancel page navigation in Next.js, the way Nuxt's Navigation Guard does. LayerX's
+    most-starred open-source package (595 stars). A UI utility, unrelated to the Bakuraku
+    API.
+- language: javascript
+  registry: npm
+  name: '@layerx/slack-blockbook'
+  official: true
+  api_client: false
+  kind: oss-tool
+  version: 0.0.4
+  published: '2026-04-24'
+  repository: https://github.com/layerx-oss/slack-blockbook
+  url: https://www.npmjs.com/package/@layerx/slack-blockbook
+  description: >-
+    Storybook-like preview tool for Slack Block Kit development, published under LayerX's
+    dedicated open-source organisation (layerx-oss). A developer tool, not an API client.
+- language: go
+  registry: github
+  name: layerx-oss/terraform-provider-twilio
+  official: true
+  api_client: false
+  kind: terraform-provider
+  version: null
+  published: null
+  repository: https://github.com/layerx-oss/terraform-provider-twilio
+  url: https://github.com/layerx-oss/terraform-provider-twilio
+  note: >-
+    Not published to the Terraform Registry and carries no tagged release, so no registry
+    metadata endpoint exists to read a version or date from. version and published are
+    null because they were checked and found absent, not because they were skipped. It
+    is a provider for Twilio's API, not for LayerX's own.
+registries_checked:
+- registry: npm
+  query: bakuraku
+  result: no packages
+- registry: npm
+  query: layerx
+  result: two first-party packages, neither an API client
+- registry: pypi
+  query: bakuraku
+  status: 404
+- registry: pypi
+  query: layerx
+  status: 404
+- registry: maven-central
+  result: no first-party artifact
+- registry: nuget
+  result: no first-party artifact
+- registry: rubygems
+  result: no first-party artifact
+- registry: crates.io
+  result: no first-party artifact (the LayerXcom Rust repos are archived research, unpublished)
+- registry: pkg.go.dev
+  result: no first-party module for the Bakuraku API
+third_party_connectors:
+- name: TROCCO
+  vendor: primeNumber
+  url: https://documents.trocco.io/docs/data-source-bakuraku
+  official: false
+- name: freee
+  url: https://support.freee.co.jp/hc/ja/articles/58625333159961
+  official: false
+- name: bundle
+  url: https://help.bundle.jp/hc/ja
+  official: false

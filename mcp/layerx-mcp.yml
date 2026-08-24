@@ -1,0 +1,44 @@
+generated: '2026-08-23'
+method: searched
+status: none
+source: >-
+  Anonymous POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"} to
+  https://api.bakuraku.layerx.jp/mcp (404) and https://bakuraku.jp/mcp (301 to the
+  marketing site); DNS lookups for mcp.bakuraku.jp and mcp.layerx.jp (both NXDOMAIN);
+  plus a search of LayerX's own newsroom and engineering blog, 2026-08-23.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+note: >-
+  LayerX ships no MCP server for Bakuraku — no hosted endpoint, no stdio package, no
+  published manifest. This matters to state precisely because LayerX markets heavily on
+  AI agents: the バクラクAIエージェント line (証憑取得エージェント, ヘルプデスク
+  エージェント, initial-setup agent) is agents LayerX runs INSIDE its own product on the
+  customer's behalf. It is not an agent surface a third-party agent can call. LayerX
+  engineering has also written about adopting MCP internally so its own staff agents can
+  drive AWS, Datadog, GitHub and CLIs — again inward-facing. The direction of travel is
+  the opposite of what an MCPServer pointer would assert, so none is emitted.
+tools: []
+candidate_tools_note: >-
+  No candidate tool list is derived here. The pipeline derives MCP tool candidates from
+  OpenAPI operations, and LayerX publishes no OpenAPI; the six operation names known
+  publicly (GetRequest, GetRequests, GetTenantUsers, GetTenantGroups, GetTenantPositions,
+  GetTenantUserGroupPositions) come from one integrator's documentation and carry no
+  input schemas, so a tool list built from them would be names without contracts. They
+  are recorded in mcp/layerx-known-operations.yml instead, clearly attributed.
+probes:
+- url: https://api.bakuraku.layerx.jp/mcp
+  method: POST
+  status: 404
+- url: https://bakuraku.jp/mcp
+  method: POST
+  status: 301
+  note: Redirects into the WordPress marketing site, which then 404s.
+- host: mcp.bakuraku.jp
+  dns: NXDOMAIN
+- host: mcp.layerx.jp
+  dns: NXDOMAIN

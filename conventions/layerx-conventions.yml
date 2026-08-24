@@ -1,0 +1,166 @@
+generated: '2026-08-23'
+method: probed
+source: >-
+  Anonymous probes of https://api.bakuraku.layerx.jp/ on 2026-08-23, plus
+  https://bakuraku.jp/terms/api-terms/, https://bakuraku.jp/workflow/function/api/ and
+  https://tech.layerx.co.jp/entry/2025/04/18/131034 (LayerX's own engineering post on the
+  Bakuraku REST API platform).
+api: Bakuraku API
+base_url: https://api.bakuraku.layerx.jp/rest
+note: >-
+  Everything marked probed below was observed on a live anonymous request. Everything the
+  gated reference would have answered is marked unknown rather than assumed. LayerX
+  publishes no OpenAPI, so nothing here is derived from a spec.
+
+architecture:
+  public_surface: REST
+  internal: >-
+    LayerX's engineering blog describes the public REST API as a tsoa-built layer in front
+    of a unified internal GraphQL gateway, which in turn speaks gRPC (Connect) to the
+    backing services. The GraphQL gateway and the protobuf definitions are internal; no
+    .proto, SDL or GraphQL endpoint is published.
+  source: https://tech.layerx.co.jp/entry/2025/04/18/131034
+
+versioning:
+  style: path
+  observed: /rest/v1/...
+  evidence:
+    url: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+    status: 400
+    probed: '2026-08-23'
+  policy: >-
+    Article 5.5 of the API terms states LayerX may change any part of the API
+    specification at any time without prior notice to the contract holder, and Article 5.4
+    states parts of the behaviour may not appear in the specification document at all.
+    There is no published deprecation window or Sunset-header commitment.
+  source: https://bakuraku.jp/terms/api-terms/
+
+authentication:
+  style: api-key
+  detail: see authentication/layerx-authentication.yml
+  header: unknown
+
+error_envelope:
+  format: custom
+  rfc9457: false
+  content_type: application/json; charset=utf-8
+  shape:
+    code: integer
+    message: string
+  observed_example: '{"code":3,"message":"不正な値です"}'
+  note: >-
+    The integer `code` matches the Connect/gRPC canonical code space (3 =
+    INVALID_ARGUMENT), consistent with the Connect-based internals LayerX describes. The
+    `message` is a localized Japanese string. See errors/layerx-error-codes.yml.
+  evidence:
+    url: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+    status: 400
+    probed: '2026-08-23'
+
+request_tracing:
+  supported: true
+  header: x-layerx-request-id
+  format: UUID
+  direction: response
+  observed_example: '00006853-6041-49da-82a1-1474668ada4a'
+  note: >-
+    Returned on anonymous error responses, so it is available to a caller for support
+    correlation before authentication. No corresponding request-side header (a
+    client-supplied correlation id) is documented publicly.
+  evidence:
+    url: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+    status: 400
+    probed: '2026-08-23'
+
+caching:
+  etag: true
+  observed_example: 'W/"29-V1gDZF45UGLdYMrPVMtprodw3PU"'
+  note: Weak ETag emitted even on the 400 error body; conditional-request support unverified.
+
+security_headers:
+  strict_transport_security: 'max-age=15552000; includeSubDomains'
+  x_content_type_options: nosniff
+  x_frame_options: SAMEORIGIN
+  x_permitted_cross_domain_policies: none
+  probed: '2026-08-23'
+
+pagination:
+  style: unknown
+  note: >-
+    The published capability list includes "申請情報の取得・一覧検索" (list search of
+    applications) and an integrator documents a GetRequests list operation, so a list
+    surface exists, but neither the paging parameters nor the response envelope are
+    published anonymously.
+
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    The API has write operations (create purchase request, create payment request, create
+    general-purpose application; document upload and recipient-master upsert in 請求書発行)
+    but no idempotency key, request-deduplication window or retry-safety statement appears
+    on any public LayerX page. NOT asserted, and no Idempotency pointer is emitted.
+
+dry_run_mode:
+  supported: unknown
+  note: >-
+    LayerX states it provides a customer-dedicated verification environment
+    ("お客様専用の検証環境") to prospective API users on request, which is a separate
+    environment rather than a dry-run flag on the production API. See
+    sandbox/layerx-sandbox.yml.
+  source: https://bakuraku.jp/news/20240918/
+
+reversibility:
+  status: undocumented
+  grade: null
+  write_surface: true
+  note: >-
+    The API creates business documents that move through an approval workflow — purchase
+    requests, payment requests and general-purpose applications — and in 請求書発行 it
+    uploads issuable documents and updates the recipient master. Bakuraku's own UI has
+    withdrawal/cancellation of a submitted application (申請の取り下げ) as a product
+    concept, but NO public LayerX page states whether the API exposes a reversal
+    operation, and none states a window. Because the reference is behind HTTP Basic auth,
+    an agent cannot learn before acting whether a created application can be withdrawn,
+    or whether an uploaded document can be voided. Recorded as undocumented, with no
+    window asserted.
+  surfaces:
+  - operation: create purchase request (購買申請)
+    reversal_operation: unknown
+    window: unknown
+    docs: https://bakuraku.jp/workflow/function/api/
+  - operation: create payment request (支払申請)
+    reversal_operation: unknown
+    window: unknown
+    docs: https://bakuraku.jp/workflow/function/api/
+  - operation: create general-purpose application (汎用申請)
+    reversal_operation: unknown
+    window: unknown
+    docs: https://bakuraku.jp/workflow/function/api/
+  - operation: upload issuable document (請求書発行, CSV/PDF)
+    reversal_operation: unknown
+    window: unknown
+    docs: https://bakuraku.jp/news/20240918/
+  - operation: create/update recipient master (送付先マスタ)
+    reversal_operation: unknown
+    window: unknown
+    docs: https://bakuraku.jp/news/20240918/
+
+rate_limit_signaling:
+  headers: unknown
+  detail: see rate-limits/layerx-rate-limits.yml
+
+webhooks:
+  supported: unknown
+  note: >-
+    No webhook, event or callback surface is documented on any public Bakuraku page. LayerX
+    engineering has written about an internal common platform for RECEIVING third-party
+    webhooks, which is the opposite direction. No AsyncAPI or Webhooks artifact is emitted.
+  source: https://tech.layerx.co.jp/entry/2025/02/07/122157
+
+cross_links:
+  authentication: authentication/layerx-authentication.yml
+  errors: errors/layerx-error-codes.yml
+  lifecycle: lifecycle/layerx-lifecycle.yml
+  rate_limits: rate-limits/layerx-rate-limits.yml
+  sandbox: sandbox/layerx-sandbox.yml

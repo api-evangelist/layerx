@@ -1,0 +1,52 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/expense/price/, https://bakuraku.jp/workflow/price/,
+  https://bakuraku.jp/invoice/price/, https://bakuraku.jp/doc-issue/price/,
+  https://bakuraku.jp/ar-management/price/, https://bakuraku.jp/attendance/price/
+  (all fetched 2026-08-23)
+plan_count: 0
+plans: []
+note: >-
+  LayerX publishes a per-product 料金 (pricing) page for every Bakuraku product, but none
+  of them shows a price. Each page is a lead-capture form that emails a PDF 料金表 after
+  the visitor supplies company name, department and contact details; the 経費精算 page
+  describes the download as covering "『料金』や『サポートプラン』、バクラクシリーズ
+  ご契約形態" without stating any of it on the page. The alternative routes offered are a
+  sales phone number (050-1790-5547, weekdays 10:00-18:00) and a contact form. So: pricing
+  pages exist and are indexed, list prices do not. plan_count is 0 because zero tiers are
+  readable, not because the pages are missing.
+api_pricing:
+  published: false
+  note: >-
+    API access itself is not separately priced anywhere public. Third-party coverage
+    describes applying for Bakuraku API use as free of charge on top of an existing
+    subscription, and LayerX's own 請求書発行 API announcement offers a one-month
+    no-charge trial of the API integration feature before contracting. Neither statement
+    is a price, so neither is recorded as a plan.
+  source: https://bakuraku.jp/news/20240918/
+pricing_pages:
+- product: バクラク経費精算 (expense)
+  url: https://bakuraku.jp/expense/price/
+  prices_shown: false
+  gate: lead-capture form
+- product: バクラク申請 (workflow)
+  url: https://bakuraku.jp/workflow/price/
+  prices_shown: false
+  gate: lead-capture form
+- product: バクラク請求書受取 (invoice receipt)
+  url: https://bakuraku.jp/invoice/price/
+  prices_shown: false
+  gate: lead-capture form
+- product: バクラク請求書発行 (invoice issuance)
+  url: https://bakuraku.jp/doc-issue/price/
+  prices_shown: false
+  gate: lead-capture form
+- product: バクラク債権管理 (AR management)
+  url: https://bakuraku.jp/ar-management/price/
+  prices_shown: false
+  gate: lead-capture form
+- product: バクラク勤怠 (attendance)
+  url: https://bakuraku.jp/attendance/price/
+  prices_shown: false
+  gate: lead-capture form

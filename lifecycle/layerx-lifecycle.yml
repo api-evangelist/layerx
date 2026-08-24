@@ -1,0 +1,64 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku-status.jp/ (probed 200, 2026-08-23), https://bakuraku.jp/terms/api-terms/,
+  https://bakuraku.jp/news/ and anonymous probes of https://api.bakuraku.layerx.jp/
+api: Bakuraku API
+versioning:
+  scheme: path
+  current: v1
+  evidence: https://api.bakuraku.layerx.jp/rest/v1/...
+  probed: '2026-08-23'
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: false
+  note: >-
+    There is no deprecation policy. The opposite is published: Article 5.5 of the
+    バクラクAPI利用規約 reserves LayerX's right to change any part of the API
+    specification at any time WITHOUT prior notice to the contract holder, and Article
+    5.4 warns that parts of the behaviour may not be written into the specification
+    document at all. Article 9 commits only to notifying the registered contact when a
+    spec change or an outage occurs. No Deprecation pointer is emitted for this provider.
+  source: https://bakuraku.jp/terms/api-terms/
+status_page:
+  present: true
+  url: https://bakuraku-status.jp/
+  public: true
+  login_required: false
+  platform: Site24x7 StatusIQ
+  scope: >-
+    Per-product operating status across the Bakuraku series (申請・経費精算,
+    債権・債務管理, 請求書発行, 電子帳簿保存, the smartphone app and others), with
+    incident write-ups carrying occurrence period, description and resolution state.
+  machine_readable_feed: false
+  feed_note: >-
+    Probed /api/v2/summary.json, /api/v2/status.json, /api/v2/components.json,
+    /history.rss, /history.atom and /index.json — all 404. robots.txt is
+    "User-agent: * / Disallow: / / Allow: /$", i.e. only the root page is crawlable.
+    An agent can read the status page but cannot subscribe to it as data.
+  probed: '2026-08-23'
+  http_status: 200
+sla:
+  published: false
+  note: >-
+    No uptime commitment or service credit schedule is published on any anonymous LayerX
+    page. Article 5.7 states the API is provided as-is ("現状有姿") and that LayerX
+    undertakes no obligation to develop or maintain it.
+  source: https://bakuraku.jp/terms/api-terms/
+support:
+  channel: https://bakuraku-login.layerx.jp/hc/ja
+  note: >-
+    Zendesk help centre for signed-in Bakuraku customers; anonymous crawls are met with a
+    Cloudflare interstitial, but the site demonstrably exists and is human-reachable.
+  incident_notification: >-
+    Article 9 of the API terms: LayerX notifies the contract holder's registered contact
+    on spec change or outage, and treats notice to the last-registered contact as
+    discharging that duty.
+deprecated_operations: []
+note: >-
+  No OpenAPI is published, so no operation-level deprecation could be derived. The
+  lifecycle picture for this API is unusually asymmetric: an above-average public status
+  page paired with an explicit contractual disclaimer of any change-notice or stability
+  commitment.

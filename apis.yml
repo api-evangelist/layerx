@@ -1,23 +1,164 @@
 aid: layerx
 name: LayerX
-description: 'LayerX is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'LayerX Inc. (株式会社LayerX) is a Tokyo-based enterprise software company founded
+  1 August 2018, operating as a compound startup across four business lines: Bakuraku (バクラク),
+  an AI back-office suite covering expense reimbursement, invoice receipt and issuance, workflow
+  and approvals, electronic bookkeeping, attendance, payroll and a corporate card; Ai Workforce,
+  an enterprise LLM document-processing platform; a Fintech business run through the Mitsui-X /
+  Mitsui & Co. Digital Asset Management joint venture; and a Security business added through the
+  April 2026 acquisition of AgenticSec Inc. Its developer surface is the Bakuraku API — a REST
+  API at api.bakuraku.layerx.jp built on an internal unified GraphQL gateway and tsoa, exposing
+  application/approval retrieval and creation, attachment download, and tenant user, group and
+  position directories. API access is granted by application to existing Bakuraku customers, who
+  are issued a scoped API key from the Bakuraku admin console; the API reference at
+  /rest/docs/ is HTTP Basic protected and no OpenAPI definition is published publicly.'
+image: https://layerx.co.jp/wp-content/uploads/2023/10/cropped-Icon_Square-300x300.png
 url: https://raw.githubusercontent.com/api-evangelist/layerx/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-2026-08-23
 specificationVersion: '0.20'
 created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
-apis: []
+- Japan
+- Back Office
+- Expense Management
+- Invoicing
+- Accounts Payable
+- Workflow
+- Approvals
+- Accounting
+- Payroll
+- Attendance
+- Corporate Cards
+- Artificial Intelligence
+- AI Agents
+- Document Processing
+- SaaS
+- Enterprise Software
+- Fintech
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Bakuraku API
+  description: 'REST API for the Bakuraku (バクラク) back-office suite. Publicly documented
+    capabilities are retrieval and list-search of applications/requests (申請), download of
+    attached files, creation of applications for the purchase-request, payment-request and
+    general-purpose application types, and read access to the tenant user, group and position
+    directory. Bakuraku 請求書発行 additionally exposes document upload (CSV/PDF) and
+    recipient-master create/update. Authentication is a scoped API key issued from the Bakuraku
+    admin console (API管理). Access requires an existing Bakuraku contract plus a separate API
+    application; the reference at https://api.bakuraku.layerx.jp/rest/docs/ answers HTTP 401
+    with WWW-Authenticate: Basic to anonymous callers and no OpenAPI is published.'
+  humanURL: https://bakuraku.jp/workflow/function/api/
+  baseURL: https://api.bakuraku.layerx.jp/rest
+  tags:
+  - Expense Management
+  - Invoicing
+  - Workflow
+  - Approvals
+  - Back Office
+  properties:
+  - type: Documentation
+    url: https://bakuraku.jp/workflow/function/api/
+  - type: APIReference
+    url: https://api.bakuraku.layerx.jp/rest/docs/
+  - type: TermsOfService
+    url: https://bakuraku.jp/terms/api-terms/
+  - type: Authentication
+    url: authentication/layerx-authentication.yml
+  - type: Conventions
+    url: conventions/layerx-conventions.yml
+  - type: ErrorCatalog
+    url: errors/layerx-error-codes.yml
+  - type: RateLimits
+    url: rate-limits/layerx-rate-limits.yml
+  - type: Lifecycle
+    url: lifecycle/layerx-lifecycle.yml
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://layerx.co.jp/
+- type: DeveloperPortal
+  url: https://bakuraku.jp/workflow/function/api/
+- type: Documentation
+  url: https://bakuraku.jp/workflow/function/api/
+- type: APIReference
+  url: https://api.bakuraku.layerx.jp/rest/docs/
+- type: Support
+  url: https://bakuraku-login.layerx.jp/hc/ja
+- type: Blog
+  url: https://tech.layerx.co.jp/
+- type: GitHubOrganization
+  url: https://github.com/LayerXcom
+- type: Pricing
+  url: https://bakuraku.jp/expense/price/
+- type: SignUp
+  url: https://id.layerx.jp/auth/sign_in
+- type: TermsOfService
+  url: https://bakuraku.jp/terms/api-terms/
+- type: PrivacyPolicy
+  url: https://layerx.co.jp/privacy/
+- type: StatusPage
+  url: https://bakuraku-status.jp/
+- type: Security
+  url: https://layerx.co.jp/security_policy/
+- type: TrustCenter
+  url: https://bakuraku.jp/security/
+- type: Compliance
+  url: conformance/layerx-conformance.yml
+- type: Conformance
+  url: conformance/layerx-conformance.yml
+- type: VulnerabilityDisclosure
+  url: security/layerx-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/layerx-domain-security.yml
+- type: Authentication
+  url: authentication/layerx-authentication.yml
+- type: Conventions
+  url: conventions/layerx-conventions.yml
+- type: ErrorCatalog
+  url: errors/layerx-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/layerx-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/layerx-rate-limits.yml
+- type: Plans
+  url: plans/layerx-plans-pricing.yml
+- type: ChangeLog
+  url: changelog/layerx-changelog.yml
+- type: Packages
+  url: packages/layerx-packages.yml
+- type: LLMsTxt
+  url: llms/layerx-llms.txt
+x-enrichment:
+  date: '2026-08-23'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    The Bakuraku REST API is live and reachable at https://api.bakuraku.layerx.jp/rest —
+    it answers anonymous calls with its own JSON error envelope and an x-layerx-request-id
+    header — but its reference at /rest/docs/ sits behind HTTP Basic auth at the AWS load
+    balancer (401, WWW-Authenticate: Basic), issued only to companies LayerX has approved
+    as an "API契約者" on top of an existing Bakuraku subscription, and the API terms state
+    the specification document is supplied separately to those customers, so no OpenAPI
+    exists at any public URL.
+  evidence:
+    - url: https://api.bakuraku.layerx.jp/rest/docs/
+      status: 401
+    - url: https://api.bakuraku.layerx.jp/rest/v1/tenant/users
+      status: 400
+    - url: https://api.bakuraku.layerx.jp/openapi.json
+      status: 404
+    - url: https://bakuraku.jp/terms/api-terms/
+      status: 200
+  checked: '2026-08-23'

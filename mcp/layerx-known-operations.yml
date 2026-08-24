@@ -1,0 +1,57 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://documents.trocco.io/docs/data-source-bakuraku — an ETL vendor's public
+  connector documentation, which names the Bakuraku operations its Bakuraku data source
+  calls and deep-links each one into
+  https://api.bakuraku.layerx.jp/rest/docs/#/operations/<operationId>.
+api: Bakuraku API
+provenance_warning: >-
+  THIS IS NOT A SPEC AND MUST NOT BE TREATED AS ONE. These operation identifiers were
+  published by a third-party integrator, not by LayerX. They are recorded so a later round
+  can recognise the surface, and so nobody re-derives an OpenAPI from them. No parameters,
+  request bodies, responses or types are known — the reference that would carry them is
+  HTTP Basic protected. Do not generate an OpenAPI, MCP tool list, Agent Skill, data model
+  or crosswalk from this file.
+operations:
+- operationId: GetRequests
+  summary: List / search applications (申請)
+  method: unknown
+  path: unknown
+- operationId: GetRequest
+  summary: Get a single application (申請) by identifier
+  method: unknown
+  path: unknown
+- operationId: GetTenantUsers
+  summary: List tenant users
+  method: unknown
+  path: unknown
+- operationId: GetTenantGroups
+  summary: List tenant teams / groups
+  method: unknown
+  path: unknown
+- operationId: GetTenantPositions
+  summary: List tenant positions / roles
+  method: unknown
+  path: unknown
+- operationId: GetTenantUserGroupPositions
+  summary: List user-to-group-to-position affiliations
+  method: unknown
+  path: unknown
+provider_documented_capabilities:
+  source: https://bakuraku.jp/workflow/function/api/
+  note: >-
+    LayerX's own prose description of the API surface, without operation identifiers.
+  capabilities:
+  - 申請情報の取得・一覧検索 (retrieve and list-search application information)
+  - 添付ファイルのダウンロード (download attached files)
+  - APIからの申請作成 — for 購買申請 (purchase requests), 支払申請 (payment requests) and 汎用申請 (general-purpose applications)
+  additional:
+    source: https://bakuraku.jp/news/20240918/
+    product: バクラク請求書発行
+    capabilities:
+    - 帳票の作成・アップロード (create/upload documents, CSV or PDF)
+    - 送付先マスタの新規登録・更新 (create/update the recipient master)
+coverage:
+  operations_named_publicly: 6
+  operations_with_a_published_contract: 0

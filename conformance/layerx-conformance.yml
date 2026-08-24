@@ -1,0 +1,137 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://bakuraku.jp/security/, https://layerx.co.jp/security_policy/,
+  https://bakuraku.jp/denshichobo/, https://bakuraku.jp/terms/api-terms/ and anonymous
+  probes of https://api.bakuraku.layerx.jp/ (2026-08-23)
+api: Bakuraku API
+note: >-
+  LayerX publishes no OpenAPI, AsyncAPI, GraphQL SDL, .proto or WSDL, so every
+  contract-shaped conformance claim below is recorded as unverifiable rather than false —
+  there is no contract to read the signature out of. The compliance certifications are
+  provider-published and are recorded as conforming with the page that states them.
+
+conformance:
+- id: oauth2
+  conforms: false
+  evidence: >-
+    The Bakuraku API authenticates with a permission-scoped API key issued from the admin
+    console, not an OAuth 2.0 flow. LayerX does run an Authlete-based OAuth 2.0/OIDC
+    server for LayerX ID sign-in (id.layerx.jp), but that is product SSO and is not the
+    API's auth mode; it also serves no anonymous discovery document.
+  source: https://documents.trocco.io/docs/connection-configuration-bakuraku
+- id: oidc
+  conforms: false
+  evidence: >-
+    Probed https://id.layerx.jp/.well-known/openid-configuration — HTTP 200 but the body
+    is the sign-in single-page-app HTML shell, which the same host returns for every
+    /.well-known/* path. No discovery document is served anonymously.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Error bodies are application/json with a custom {code, message} envelope, not
+    application/problem+json. Observed on
+    https://api.bakuraku.layerx.jp/rest/v1/tenant/users, HTTP 400,
+    '{"code":3,"message":"不正な値です"}'.
+- id: rfc8594
+  conforms: false
+  evidence: >-
+    No Deprecation or Sunset header is documented. Article 5.5 of the API terms
+    explicitly reserves the right to change the specification without prior notice, which
+    is the opposite of an RFC 8594 posture.
+  source: https://bakuraku.jp/terms/api-terms/
+- id: idempotency
+  conforms: unverifiable
+  evidence: >-
+    The API has write operations but publishes no idempotency-key header, dedupe window
+    or retry-safety statement on any anonymous page, and the reference is HTTP Basic
+    gated. Neither asserted nor denied.
+- id: pagination
+  conforms: unverifiable
+  evidence: >-
+    A list-search surface is documented in prose ("申請情報の取得・一覧検索") and an
+    integrator names a GetRequests list operation, but the paging contract is inside the
+    gated reference.
+- id: scim
+  conforms: unverifiable
+  evidence: >-
+    Bakuraku exposes a tenant user/group/position directory over the API (GetTenantUsers,
+    GetTenantGroups, GetTenantPositions, GetTenantUserGroupPositions per an integrator's
+    published mapping), which is the surface SCIM would standardise, but no
+    urn:ietf:params:scim:schemas:* URN or /scim/v2 path is published and none could be
+    probed anonymously. SAML SSO is supported for tenant login.
+- id: rest
+  conforms: true
+  evidence: >-
+    LayerX's own engineering post describes the public surface as a tsoa-built REST API
+    over an internal unified GraphQL gateway. Path-versioned at /rest/v1/.
+  source: https://tech.layerx.co.jp/entry/2025/04/18/131034
+
+compliance:
+- id: iso-27001
+  name: ISO/IEC 27001 (ISMS)
+  conforms: true
+  registration_number: IS 747702
+  evidence: >-
+    Stated on LayerX's corporate security policy page and in the bakuraku.jp footer, with
+    the Mitsui & Co. Digital Asset Management business unit carved out of scope.
+  source: https://layerx.co.jp/security_policy/
+- id: soc1-type2
+  name: SOC 1 Type 2
+  conforms: true
+  evidence: Stated on the Bakuraku security page as covering internal control over financial reporting.
+  source: https://bakuraku.jp/security/
+- id: jiima-scanner
+  name: JIIMA 電帳法スキャナ保存ソフト法的要件認証
+  conforms: true
+  applies_to: バクラク電子帳簿保存
+  evidence: >-
+    "「電帳法スキャナ保存ソフト法的要件認証」及び「電帳法電子取引ソフト法的要件認証」を
+    取得しております" — quoted from LayerX's own product page, with the caveat that
+    certification status differs by product.
+  source: https://bakuraku.jp/denshichobo/
+- id: jiima-etransaction
+  name: JIIMA 電帳法電子取引ソフト法的要件認証
+  conforms: true
+  applies_to: バクラク電子帳簿保存
+  evidence: Same page and same quoted sentence as jiima-scanner.
+  source: https://bakuraku.jp/denshichobo/
+- id: invoice-system-jp
+  name: インボイス制度 (Japanese Qualified Invoice System)
+  conforms: true
+  evidence: >-
+    Bakuraku states it supports the Qualified Invoice System and ships automatic
+    validation of the 適格請求書発行事業者登録番号 against the register.
+  source: https://bakuraku.jp/denshichobo/
+- id: denshichobo-ho
+  name: 電子帳簿保存法 (Electronic Books Preservation Act)
+  conforms: true
+  evidence: The JIIMA certifications above are the legal-requirements attestation for this act.
+  source: https://bakuraku.jp/denshichobo/
+
+domain_standard:
+  market: Japanese accounts-payable / accounts-receivable and electronic invoicing
+  candidates_checked:
+  - id: peppol-jp-pint
+    name: Peppol / JP PINT digital invoice
+    declared_in_contract: false
+    evidence: >-
+      Bakuraku publishes explanatory content ABOUT Peppol and JP PINT
+      (https://bakuraku.jp/knowledge/knowledge-invoice/digital-invoice/) but makes no
+      claim that バクラク請求書発行 sends or receives over the Peppol network, and there
+      is no contract to inspect for a JP PINT message shape. Not claimed either way.
+  - id: iso-20022
+    name: ISO 20022
+    declared_in_contract: false
+    evidence: No ISO 20022 message type appears on any public LayerX surface.
+  - id: scim
+    name: SCIM 2.0
+    declared_in_contract: false
+    evidence: See the scim row above — the directory surface exists, the URN does not.
+  conforms: unverifiable
+  note: >-
+    REWARD-ONLY check, and nothing is claimed here. The domain standards that would count
+    for this market are the JIIMA/電帳法 certifications, which LayerX does hold, but they
+    certify the PRODUCT against Japanese law rather than declaring a message standard
+    inside a machine-readable contract. Because no contract is published, the
+    contract-declared form of this check cannot be evaluated at all.
