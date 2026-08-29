@@ -12,6 +12,17 @@ description: 'LayerX Inc. (株式会社LayerX) is a Tokyo-based enterprise softw
   position directories. API access is granted by application to existing Bakuraku customers, who
   are issued a scoped API key from the Bakuraku admin console; the API reference at
   /rest/docs/ is HTTP Basic protected and no OpenAPI definition is published publicly.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://layerx.co.jp/wp-content/uploads/2023/10/cropped-Icon_Square-300x300.png
 url: https://raw.githubusercontent.com/api-evangelist/layerx/refs/heads/main/apis.yml
 x-type: company
