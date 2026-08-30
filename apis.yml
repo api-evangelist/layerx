@@ -39,6 +39,25 @@ tags:
 - Expense Management
 - Invoicing
 - Accounts Payable
+- Workflows
+- Approvals
+- Accounting
+- Payroll
+- Attendance
+- Corporate Cards
+- Artificial Intelligence
+- AI Agents
+- Document Processing
+- Software-as-a-Service
+- Enterprise Software
+- Fintech
+tags_raw:
+- Company
+- Japan
+- Back Office
+- Expense Management
+- Invoicing
+- Accounts Payable
 - Workflow
 - Approvals
 - Accounting
@@ -70,6 +89,12 @@ apis:
   humanURL: https://bakuraku.jp/workflow/function/api/
   baseURL: https://api.bakuraku.layerx.jp/rest
   tags:
+  - Expense Management
+  - Invoicing
+  - Workflows
+  - Approvals
+  - Back Office
+  tags_raw:
   - Expense Management
   - Invoicing
   - Workflow
