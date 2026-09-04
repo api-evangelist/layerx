@@ -23,6 +23,22 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  probe_state: gated
+  source:
+  - authentication
+  - rate-limits
+  - security
+  - sandbox
+  generated: '2026-09-03'
+  method: derived
 image: https://layerx.co.jp/wp-content/uploads/2023/10/cropped-Icon_Square-300x300.png
 url: https://raw.githubusercontent.com/api-evangelist/layerx/refs/heads/main/apis.yml
 x-type: company
