@@ -47,7 +47,7 @@ x-tier: profiled
 x-tier-reason: enrichment-2026-08-23
 specificationVersion: '0.20'
 created: '2026-08-23'
-modified: '2026-08-23'
+modified: '2026-10-06'
 tags:
 - Company
 - Japan
@@ -134,6 +134,10 @@ apis:
   - type: Lifecycle
     url: lifecycle/layerx-lifecycle.yml
 common:
+- url: https://layerx.co.jp/news/
+  type: Blog
+- url: https://layerx.co.jp/news/feed/
+  type: BlogRSS
 - type: Website
   url: https://layerx.co.jp/
 - type: DeveloperPortal
