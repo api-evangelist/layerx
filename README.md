@@ -64,20 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-LayerX Inc. (株式会社LayerX) is a Tokyo-based enterprise software company founded 1 August 2018,
-operating as a compound startup across four business lines: **Bakuraku** (バクラク), an AI back-office
-suite covering expense reimbursement, invoice receipt and issuance, workflow and approvals, electronic
-bookkeeping, attendance, payroll and a corporate card; **Ai Workforce**, an enterprise LLM
-document-processing platform; a **Fintech** business run through the Mitsui-X / Mitsui & Co. Digital Asset
-Management joint venture; and a **Security** business added through the April 2026 acquisition of
-AgenticSec Inc.
+LayerX Inc. (株式会社LayerX) is a Tokyo-based enterprise software company founded 1 August 2018, operating as a compound startup across four business lines: Bakuraku (バクラク), an AI back-office suite covering expense reimbursement, invoice receipt and issuance, workflow and approvals, electronic bookkeeping, attendance, payroll and a corporate card; Ai Workforce, an enterprise LLM document-processing platform; a Fintech business run through the Mitsui-X / Mitsui & Co. Digital Asset Management joint venture; and a Security business added through the April 2026 acquisition of AgenticSec Inc. Its developer surface is the Bakuraku API — a REST API at api.bakuraku.layerx.jp built on an internal unified GraphQL gateway and tsoa, exposing application/approval retrieval and creation, attachment download, and tenant user, group and position directories. API access is granted by application to existing Bakuraku customers, who are issued a scoped API key from the Bakuraku admin console; the API reference at /rest/docs/ is HTTP Basic protected and no OpenAPI definition is published publicly.
 
-Its developer surface is the **Bakuraku API**, a REST API at `api.bakuraku.layerx.jp` built on an internal
-unified GraphQL gateway and tsoa. The API is live and answers anonymous calls with its own JSON error
-envelope, but its reference is HTTP Basic protected and issued only to approved API customers, and no
-OpenAPI definition is published at any public URL. See `x-coverage` in `apis.yml`.
+**Areas:** Company · Japan · Back Office · Expense Management · Invoicing · Accounts Payable · Workflows · Approvals · Accounting · Payroll · Attendance · Corporate Cards
 
-- https://layerx.co.jp/ — company
-- https://bakuraku.jp/ — Bakuraku product site
-- https://bakuraku.jp/workflow/function/api/ — API overview
-- https://bakuraku-status.jp/ — status page
+## LayerX on APIs.io
+
+Everything profiled for LayerX is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/layerx/](https://apis.io/providers/layerx/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Bakuraku API](https://apis.io/apis/layerx/bakuraku-api/) — REST API for the Bakuraku (バクラク) back-office suite. Publicly documented capabilities are retrieval and list-search of applications/requests (申請), download…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Layerx Authentication](https://apis.io/security/layerx/layerx-authentication/)
+- [Layerx Domain Security](https://apis.io/security/layerx/layerx-domain-security/)
+- [Layerx Trust Center](https://apis.io/security/layerx/layerx-trust-center/)
+- [Layerx Vulnerability Disclosure](https://apis.io/security/layerx/layerx-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Layerx Plans Pricing](https://apis.io/plans/layerx/layerx-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Layerx Rate Limits](https://apis.io/rate-limits/layerx/layerx-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://layerx.co.jp/)
+- [Documentation](https://bakuraku.jp/workflow/function/api/)
+- [API reference](https://api.bakuraku.layerx.jp/rest/docs/)
+- [Pricing](https://bakuraku.jp/expense/price/)
+- [Sign up](https://id.layerx.jp/auth/sign_in)
+- [Support](https://bakuraku-login.layerx.jp/hc/ja)
+- [Blog](https://layerx.co.jp/news/)
+- [Security](https://layerx.co.jp/security_policy/)
+- [Trust centre](https://bakuraku.jp/security/)
+- [Terms of service](https://bakuraku.jp/terms/api-terms/)
+- [Privacy policy](https://layerx.co.jp/privacy/)
+- [GitHub](https://github.com/LayerXcom)
+- [Status](https://bakuraku-status.jp/)
+
+## API Evangelist rating
+
+**Kin Score 35.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 41.7 |
+| Access clarity | 47.4 |
+
+**Agent readiness 10.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.7** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/layerx/](https://apis.io/providers/layerx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LayerX: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/layerx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
